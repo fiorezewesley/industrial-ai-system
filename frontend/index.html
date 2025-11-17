@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Análise Preditiva - Planta Industrial</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header class="dashboard-header">
+            <h1>🏭 Sistema de Análise Preditiva Industrial</h1>
+            <div class="controls">
+                <button id="btnTrainModel" class="btn btn-primary">Treinar Modelo IA</button>
+                <button id="btnStartMonitoring" class="btn btn-success">Iniciar Monitoramento</button>
+                <button id="btnStopMonitoring" class="btn btn-danger">Parar Monitoramento</button>
+            </div>
+        </header>
+
+        <div class="status-bar">
+            <div class="status-item">
+                <span class="status-label">Status Modelo:</span>
+                <span id="modelStatus" class="status-badge">Não Treinado</span>
+            </div>
+            <div class="status-item">
+                <span class="status-label">Última Atualização:</span>
+                <span id="lastUpdate">--:--:--</span>
+            </div>
+        </div>
+
+        <div class="dashboard-grid">
+            <!-- Card 1: Probabilidade de Falha em Tempo Real -->
+            <div class="card">
+                <h3>🔍 Probabilidade de Falha</h3>
+                <div class="gauge-container">
+                    <canvas id="failureGauge" width="200" height="120"></canvas>
+                    <div id="failureValue" class="gauge-value">0%</div>
+                </div>
+                <div id="failureStatus" class="status-normal">Status: Normal</div>
+            </div>
+
+            <!-- Card 2: Importância das Variáveis -->
+            <div class="card">
+                <h3>📊 Importância das Variáveis</h3>
+                <canvas id="featureImportanceChart"></canvas>
+            </div>
+
+            <!-- Card 3: Métricas dos Sensores -->
+            <div class="card">
+                <h3>📈 Métricas em Tempo Real</h3>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <label>Temperatura</label>
+                        <div id="tempValue" class="metric-value">-- °C</div>
+                    </div>
+                    <div class="metric">
+                        <label>Pressão</label>
+                        <div id="pressureValue" class="metric-value">-- bar</div>
+                    </div>
+                    <div class="metric">
+                        <label>Vibração</label>
+                        <div id="vibrationValue" class="metric-value">-- mm/s</div>
+                    </div>
+                    <div class="metric">
+                        <label>Consumo Energia</label>
+                        <div id="energyValue" class="metric-value">-- kW</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card 4: Histórico de Previsões -->
+            <div class="card full-width">
+                <h3>📋 Histórico de Previsões</h3>
+                <div class="predictions-container">
+                    <table id="predictionsTable">
+                        <thead>
+                            <tr>
+                                <th>Equipamento</th>
+                                <th>Temperatura</th>
+                                <th>Pressão</th>
+                                <th>Vibração</th>
+                                <th>Prob. Falha</th>
+                                <th>Status</th>
+                                <th>Timestamp</th>
+                            </tr>
+                        </thead>
+                        <tbody id="predictionsBody">
+                            <!-- Preenchido via JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Card 5: Tendência Temporal -->
+            <div class="card full-width">
+                <h3>📈 Tendência Temporal - Probabilidade de Falha</h3>
+                <canvas id="trendChart"></canvas>
+            </div>
+        </div>
+
+        <!-- Loading Overlay -->
+        <div id="loadingOverlay" class="loading-overlay hidden">
+            <div class="loading-spinner"></div>
+            <p>Processando...</p>
+        </div>
+    </div>
+
+    <script src="js/dashboard.js"></script>
+</body>
+</html>
