@@ -5,7 +5,7 @@ class IndustrialDashboard {
         this.historyData = [];
         this.maxHistoryPoints = 20;
         
-        console.log('🚀 Dashboard inicializado');
+        console.log('Dashboard inicializado');
         
         // Inicializar após o DOM carregar
         setTimeout(() => {
@@ -16,7 +16,7 @@ class IndustrialDashboard {
     }
     
     initializeCharts() {
-        console.log('📊 Inicializando gráficos...');
+        console.log('Inicializando gráficos...');
         
         // Gauge de probabilidade de falha
         const gaugeCtx = document.getElementById('failureGauge');
@@ -40,9 +40,9 @@ class IndustrialDashboard {
                     }
                 }
             });
-            console.log('✅ Gauge inicializado');
+            console.log('Gauge inicializado');
         } else {
-            console.error('❌ Elemento failureGauge não encontrado');
+            console.error('Elemento failureGauge não encontrado');
         }
         
         // Gráfico de importância de features
@@ -68,7 +68,7 @@ class IndustrialDashboard {
                     }
                 }
             });
-            console.log('✅ Gráfico de features inicializado');
+            console.log('Gráfico de features inicializado');
         }
 
         // Gráfico de tendência temporal
@@ -97,12 +97,12 @@ class IndustrialDashboard {
                     }
                 }
             });
-            console.log('✅ Gráfico de tendência inicializado');
+            console.log('Gráfico de tendência inicializado');
         }
     }
     
     setupEventListeners() {
-        console.log('🎮 Configurando botões...');
+        console.log('Configurando botões...');
         
         const trainBtn = document.getElementById('btnTrainModel');
         const startBtn = document.getElementById('btnStartMonitoring');
@@ -110,22 +110,22 @@ class IndustrialDashboard {
         
         if (trainBtn) {
             trainBtn.addEventListener('click', () => this.trainModel());
-            console.log('✅ Botão treinar configurado');
+            console.log('Botão treinar configurado');
         }
         
         if (startBtn) {
             startBtn.addEventListener('click', () => this.startMonitoring());
-            console.log('✅ Botão iniciar monitoramento configurado');
+            console.log('Botão iniciar monitoramento configurado');
         }
         
         if (stopBtn) {
             stopBtn.addEventListener('click', () => this.stopMonitoring());
-            console.log('✅ Botão parar monitoramento configurado');
+            console.log('Botão parar monitoramento configurado');
         }
     }
     
     async trainModel() {
-        console.log('🎯 Iniciando treinamento...');
+        console.log('Iniciando treinamento...');
         this.showLoading(true);
         this.updateModelStatus('Treinando...');
         
@@ -144,7 +144,7 @@ class IndustrialDashboard {
             }
             
             const result = await response.json();
-            console.log('📊 Resultado do treinamento:', result);
+            console.log('Resultado do treinamento:', result);
             
             if (result.success) {
                 this.updateModelStatus('Treinado');
@@ -157,7 +157,7 @@ class IndustrialDashboard {
             }
             
         } catch (error) {
-            console.error('❌ Erro no treinamento:', error);
+            console.error('Erro no treinamento:', error);
             this.showError('Erro ao treinar modelo: ' + error.message);
             this.updateModelStatus('Erro no Treinamento');
         } finally {
@@ -166,7 +166,7 @@ class IndustrialDashboard {
     }
     
     async startMonitoring() {
-        console.log('🔍 Iniciando monitoramento...');
+        console.log('Iniciando monitoramento...');
         
         if (this.monitoringInterval) {
             this.stopMonitoring();
@@ -182,11 +182,11 @@ class IndustrialDashboard {
         
         this.updateModelStatus('Monitorando...');
         this.toggleButtons(true);
-        this.showMessage('🔍 Monitoramento iniciado - Coletando dados a cada 3 segundos');
+        this.showMessage('Monitoramento iniciado - Coletando dados a cada 3 segundos');
     }
     
     stopMonitoring() {
-        console.log('⏹️ Parando monitoramento...');
+        console.log('Parando monitoramento...');
         
         if (this.monitoringInterval) {
             clearInterval(this.monitoringInterval);
@@ -195,7 +195,7 @@ class IndustrialDashboard {
         
         this.updateModelStatus('Treinado');
         this.toggleButtons(false);
-        this.showMessage('⏹️ Monitoramento parado');
+        this.showMessage('Monitoramento parado');
     }
     
     async generateAndPredict() {
@@ -207,7 +207,7 @@ class IndustrialDashboard {
             await this.makePrediction(sampleData);
             
         } catch (error) {
-            console.error('❌ Erro na geração de dados:', error);
+            console.error('Erro na geração de dados:', error);
         }
     }
     
@@ -220,13 +220,14 @@ class IndustrialDashboard {
             vibracao: hasAnomaly ? Math.random() * 4 + 8 : Math.random() * 3 + 4,
             consumo_energia: Math.random() * 50 + 130,
             horas_operacao: Math.floor(Math.random() * 500),
-            equipment_id: 'EQ-' + Math.floor(Math.random() * 9000 + 1000)
+            //equipment_id: 'EQ-' + Math.floor(Math.random() * 9000 + 1000)
+            equipment_id: 'Centur-30'
         };
     }
     
     async makePrediction(sensorData) {
         try {
-            console.log('🎯 Fazendo predição para:', sensorData);
+            console.log('Fazendo predição para:', sensorData);
             
             const response = await fetch(this.apiBaseUrl + '/get_predictions.php', {
                 method: 'POST',
@@ -236,14 +237,14 @@ class IndustrialDashboard {
                 body: JSON.stringify(sensorData)
             });
             
-            console.log('📡 Status da resposta:', response.status);
+            console.log('Status da resposta:', response.status);
             
             if (!response.ok) {
                 throw new Error(`Erro HTTP! status: ${response.status}`);
             }
             
             const result = await response.json();
-            console.log('📊 Resultado da predição:', result);
+            console.log('Resultado da predição:', result);
             
             if (result.success) {
                 this.updateDashboard(sensorData, result.prediction);
@@ -253,7 +254,7 @@ class IndustrialDashboard {
             }
             
         } catch (error) {
-            console.error('❌ Erro na predição:', error);
+            console.error('Erro na predição:', error);
             this.showError('Erro na predição: ' + error.message);
             
             // Para demonstração, simule uma predição
@@ -262,7 +263,7 @@ class IndustrialDashboard {
     }
     
     simulatePrediction(sensorData) {
-        console.log('🔄 Simulando predição...');
+        console.log('Simulando predição...');
         
         // Simulação básica para demonstração
         const tempRisk = sensorData.temperatura > 85 ? 0.4 : 0.1;
@@ -282,7 +283,7 @@ class IndustrialDashboard {
     }
     
     updateDashboard(sensorData, prediction) {
-        console.log('📈 Atualizando dashboard...', prediction);
+        console.log('Atualizando dashboard...', prediction);
         
         // Atualizar gauge
         const failurePercent = (prediction.probabilidade_falha * 100);
@@ -319,7 +320,7 @@ class IndustrialDashboard {
         // Atualizar gráfico de tendência
         this.updateTrendChart(prediction.probabilidade_falha);
         
-        console.log('✅ Dashboard atualizado');
+        console.log('Dashboard atualizado');
     }
 
     updateTrendChart(probability) {
@@ -353,7 +354,7 @@ class IndustrialDashboard {
     
     addToHistory(sensorData, prediction) {
         const historyEntry = {
-            equipment: sensorData.equipment_id || 'EQ-001',
+            equipment: sensorData.equipment_id || 'Torno CNC Centur-30',
             temperatura: sensorData.temperatura.toFixed(1),
             pressao: sensorData.pressao.toFixed(1),
             vibracao: sensorData.vibracao.toFixed(1),
@@ -375,7 +376,7 @@ class IndustrialDashboard {
     updateHistoryTable() {
         const tbody = document.getElementById('predictionsBody');
         if (!tbody) {
-            console.error('❌ Tabela de histórico não encontrada');
+            console.error('Tabela de histórico não encontrada');
             return;
         }
         
@@ -405,7 +406,7 @@ class IndustrialDashboard {
             this.featureChart.data.datasets[0].data = data;
             this.featureChart.update();
             
-            console.log('✅ Importância das features atualizada:', features);
+            console.log('Importância das features atualizada:', features);
         }
     }
     
@@ -441,17 +442,17 @@ class IndustrialDashboard {
     }
     
     showMessage(message) {
-        console.log('📢:', message);
+        console.log('', message);
     }
     
     showError(message) {
-        console.error('❌:', message);
+        console.error(':', message);
         alert('Erro: ' + message);
     }
 }
 
 // Inicializar quando a página carregar
 document.addEventListener('DOMContentLoaded', () => {
-    console.log('🏁 DOM carregado - inicializando dashboard...');
+    console.log('DOM carregado - inicializando dashboard...');
     window.dashboard = new IndustrialDashboard();
 });
