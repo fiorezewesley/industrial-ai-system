@@ -23,22 +23,22 @@ Sistema completo de análise preditiva para monitoramento de equipamentos indust
 - Joblib para serialização
 
 ### Estrutura de Diretórios
-industrial-ai-system/
-├── frontend/ # Interface web
-│ ├── index.html # Dashboard principal
-│ ├── banca-panel.html # Painel interativo
-│ ├── css/style.css # Estilos
-│ └── js/dashboard.js # Lógica do frontend
-├── backend-php/ # API e servidor
-│ └── api/
-│ ├── train_model.php # Endpoint de treinamento
-│ └── get_predictions.php # Endpoint de predições
-└── python-ai/ # Modelos de ML
-├── models/
-│ ├── train_model.py # Script de treinamento
-│ └── model.pkl # Modelo serializado
-├── venv/ # Ambiente virtual
-└── requirements.txt # Dependências
+### industrial-ai-system/
+### ├── frontend/ # Interface web
+### │ ├── index.html # Dashboard principal
+### │ ├── banca-panel.html # Painel interativo
+### │ ├── css/style.css # Estilos
+### │ └── js/dashboard.js # Lógica do frontend
+### ├── backend-php/ # API e servidor
+### │ └── api/
+### │ ├── train_model.php # Endpoint de treinamento
+### │ └── get_predictions.php # Endpoint de predições
+### └── python-ai/ # Modelos de ML
+### ├── models/
+### │ ├── train_model.py # Script de treinamento
+### │ └── model.pkl # Modelo serializado
+### ├── venv/ # Ambiente virtual
+### └── requirements.txt # Dependências
 
 ### Fluxo de Dados
 
@@ -105,24 +105,3 @@ Dashboard para visualização de métricas operacionais
 Autor
 Wesley Fioreze
 
-
-## Comandos Finais para Envio
-
-```bash
-# Certifique-se de estar na raiz do projeto
-cd ~/Documentos/aula-teste/industrial-ai-system
-
-# Verifique o status
-git status
-
-# Adicione o README (se criou um novo)
-git add README.md
-
-# Ou adicione todas as alterações
-git add .
-
-# Commit
-git commit -m "Documentação: Adiciona README com arquitetura e instruções"
-
-# Envie para o GitHub
-git push origin main
